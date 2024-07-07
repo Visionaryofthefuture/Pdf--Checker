@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}PDF Tool{% endblock %}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <a href="{% url 'home'%}" class="navbar-title">PDF Tool</a>
+            
+            {% if user.is_authenticated %}
+            <div class="navbar-buttons">
+                <a href="{% url 'logout' %}" class="btn">Logout</a>
+            </div>
+           
+            {% else %}
+            <div class="navbar-buttons">
+                <a href="{% url 'login' %}" class="btn">Login</a>
+                <a href="{% url 'register' %}" class="btn">Sign Up</a>
+            </div>
+            {%endif%}
+        </div>
+    </nav>
+    <div class="content">
+        {% block content %}
+        {% endblock %}
+    </div>
+</body>
+</html>

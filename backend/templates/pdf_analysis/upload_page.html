@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+
+{% block title %}Upload PDF | PDF Tool{% endblock %}
+
+{% block content %}
+<div class="upload-container">
+    <h1>Upload Your PDF</h1>
+    <form id="upload-form" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="dropbox" id="dropbox">
+            <p>Drag & Drop your PDF here or click to upload</p>
+            <input type="file" id="file-upload" name="pdf" style="display: none;">
+        </div>
+        <button type="submit">Upload</button>
+    </form>
+</div>
+
+<style>
+    .upload-container {
+        text-align: center;
+        margin: 50px auto;
+        max-width: 600px;
+    }
+
+    .dropbox {
+        border: 2px dashed #ccc;
+        border-radius: 10px;
+        padding: 50px;
+        background-color: #f9f9f9;
+        cursor: pointer;
+        transition: background-color 0.3s, border-color 0.3s;
+    }
+
+    .dropbox p {
+        font-size: 18px;
+        color: #888;
+    }
+
+    .dropbox:hover {
+        background-color: #f1f1f1;
+        border-color: #aaa;
+    }
+
+    .dropbox.dragover {
+        background-color: #e1e1e1;
+        border-color: #333;
+    }
+
+    button[type="submit"] {
+        margin-top: 20px;
+        padding: 10px 20px;
+        background-color: #28a745;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background-color 0.3s;
+    }
+
+    button[type="submit"]:hover {
+        background-color: #218838;
+    }
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var dropbox = document.getElementById('dropbox');
+        var fileInput = document.getElementById('file-upload');
+
+        dropbox.addEventListener('click', function() {
+            fileInput.click();
+        });
+
+        dropbox.addEventListener('dragover', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            dropbox.classList.add('dragover');
+        });
+
+        dropbox.addEventListener('dragleave', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            dropbox.classList.remove('dragover');
+        });
+
+        dropbox.addEventListener('drop', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            dropbox.classList.remove('dragover');
+
+            if (e.dataTransfer.files.length) {
+                fileInput.files = e.dataTransfer.files;
+                dropbox.querySelector('p').textContent = e.dataTransfer.files[0].name;
+            }
+        });
+
+        fileInput.addEventListener('change', function() {
+            if (fileInput.files.length) {
+                dropbox.querySelector('p').textContent = fileInput.files[0].name;
+            }
+        });
+    });
+</script>
+{% endblock %}

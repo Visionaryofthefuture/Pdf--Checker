@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% load static%}
+{% block title %}Home | PDF Tool{% endblock %}
+
+{% block content %}
+<style>
+    .button 
+    {
+        background-color:  #4CAF50;
+        color: white;
+        padding: 10px 20px;
+        margin: 0 5px;
+        text-decoration: none;
+        border-radius: 4px;
+    }
+    .center-button
+    {
+        padding: 20px 0 0 0;
+        text-align :center;
+    }
+    h1 {
+        margin-bottom: 20px;
+        text-align:center;
+    }
+
+    p {
+        margin-bottom: 20px;
+    }
+
+    ol {
+        margin-top: 20px;
+        margin-left: 40px;
+    }
+
+    ol li {
+        margin-bottom: 10px;
+    }
+</style>
+<h1>Welcome to the PDF Tool</h1>
+<p>This is a simple PDF analysis tool. You can upload, view, and analyze your PDFs here.</p>
+<p>Here are the features you can get analysed:</p>
+<ol>
+    <li>Check for blank pages</li>
+    <li>Detect Page Number Location</li>
+    <li>Find Landscape Pages</li>
+    <li>Check if PDF is double sided or single sided</li>
+    <li>Check and verify margin specification</li>
+</ol>
+<div class="center-button">
+    {% if user.is_authenticated%}
+    <a href="{% url 'upload_page' %}" class="button">Get Started</a>
+    {% else %}
+
+    {% endif %}
+</div>
+{% endblock %}

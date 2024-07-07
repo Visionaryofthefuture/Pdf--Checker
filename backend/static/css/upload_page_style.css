@@ -1,0 +1,50 @@
+
+    .upload-container {
+        text-align: center;
+        margin: 50px auto;
+        max-width: 600px;
+    }
+
+    .dropbox {
+        border: 2px dashed #ccc;
+        border-radius: 10px;
+        padding: 50px;
+        background-color: #f9f9f9;
+        cursor: pointer;
+        transition: background-color 0.3s, border-color 0.3s;
+    }
+
+    .dropbox p {
+        font-size: 18px;
+        color: #888;
+    }
+
+    .dropbox:hover {
+        background-color: #f1f1f1;
+        border-color: #aaa;
+    }
+
+    .dropbox.dragover {
+        background-color: #e1e1e1;
+        border-color: #333;
+    }
+
+    #file-upload {
+        display: none;
+    }
+
+    button[type="submit"] {
+        margin-top: 20px;
+        padding: 10px 20px;
+        background-color: #28a745;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background-color 0.3s;
+    }
+
+    button[type="submit"]:hover {
+        background-color: #218838;
+    }

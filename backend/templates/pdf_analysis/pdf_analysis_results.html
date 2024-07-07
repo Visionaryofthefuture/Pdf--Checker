@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="upload-container">
+    <h1>PDF Functions for uploaded file</h1>
+    <div class="dropbox" id="dropbox">
+        <p>{{ pdf.pdf.name }}</p>
+    </div>
+    <div class="button-container">
+        <a href="{% url 'check_blank_pages' pdf.pk %}" class="button">Check for Blank Pages</a>
+        <a href="{% url 'detect_page_number_location' pdf.pk %}" class="button">Detect Page Number Location</a>
+        <a href="{% url 'find_landscape_pages' pdf.pk %}" class="button">Find Landscape Pages</a>
+        <a href="{% url 'check_double_sided' pdf.pk %}" class="button">Check if PDF is Double-Sided</a>
+        <a href="{% url 'verify_margin_specification' pdf.pk %}" class="button">Check and Verify Margin Specification</a>
+        <a href="{% url 'all_functions' pdf.pk %}" class="button">Perform All Functions</a>
+    </div>
+</div>
+
+<style>
+    .upload-container {
+        text-align: center;
+        margin: 50px auto;
+        max-width: 600px;
+    }
+
+    .dropbox {
+        border: 2px dashed #ccc;
+        border-radius: 10px;
+        padding: 50px;
+        background-color: #f9f9f9;
+        cursor: pointer;
+        transition: background-color 0.3s, border-color 0.3s;
+    }
+
+    .dropbox p {
+        font-size: 18px;
+        color: #888;
+    }
+
+    .button-container {
+        margin-top: 20px;
+    }
+
+    .button {
+        display: inline-block;
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px 20px;
+        margin: 10px 5px;
+        text-decoration: none;
+        border-radius: 4px;
+        font-size: 16px;
+        transition: background-color 0.3s;
+    }
+
+    .button:hover {
+        background-color: green;
+    }
+</style>
+{% endblock %}
